@@ -1,0 +1,26 @@
+{
+  "id": 6,
+  "title": "Flight Safety Checker",
+  "description": "Santa flies from start to end hours. Given unsafe intervals, determine if any part of the flight overlaps an unsafe time. If any overlap exists, output \"Unsafe\"; otherwise output \"Safe\".",
+  "method_signatures": {
+    "java": "public static String checkSafety(int start, int end, int[][] unsafe)",
+    "python": "def check_safety(start: int, end: int, unsafe: list[list[int]]) -> str",
+    "cpp": "std::string checkSafety(int start, int end, const std::vector<std::vector<int>>& unsafe)"
+  },
+  "input_format": "Line 1: start end. Line 2: integer n. Next n lines: unsafe interval start end.",
+  "output_format": "\"Safe\" or \"Unsafe\".",
+  "constraints": "Times are integers.",
+  "sample_tests": [
+    {
+      "input": "3 10\n2\n1 2\n8 12",
+      "output": "Unsafe",
+      "explanation": "Flight overlaps interval 8\u201312."
+    }
+  ],
+  "tests": [
+    { "input": "1 5\n1\n6 10", "output": "Safe", "hidden": false },
+    { "input": "5 15\n2\n0 4\n16 20", "output": "Safe", "hidden": false },
+    { "input": "0 100\n1\n50 60", "output": "Unsafe", "hidden": true },
+    { "input": "2 3\n2\n0 1\n4 5", "output": "Safe", "hidden": true }
+  ]
+}

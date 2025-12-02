@@ -1,0 +1,26 @@
+{
+  "id": 8,
+  "title": "Sleigh Load Difference",
+  "description": "Split toy weights into two groups so the difference between their sums is as small as possible. Output that smallest difference.",
+  "method_signatures": {
+    "java": "public static int minDifference(int[] weights)",
+    "python": "def min_difference(weights: list[int]) -> int",
+    "cpp": "int minDifference(const std::vector<int>& weights)"
+  },
+  "input_format": "A comma-separated list of integer weights.",
+  "output_format": "Single integer: minimal possible difference.",
+  "constraints": "Weights are non-negative integers.",
+  "sample_tests": [
+    {
+      "input": "1, 5, 6, 11",
+      "output": "1",
+      "explanation": "Groups {11,1} and {6,5} differ by 1."
+    }
+  ],
+  "tests": [
+    { "input": "4, 4, 4, 4", "output": "0", "hidden": false },
+    { "input": "10, 20, 15", "output": "5", "hidden": false },
+    { "input": "3, 1, 4, 2, 2", "output": "0", "hidden": true },
+    { "input": "8, 6, 5", "output": "3", "hidden": true }
+  ]
+}

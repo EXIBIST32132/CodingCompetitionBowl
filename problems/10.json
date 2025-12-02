@@ -1,0 +1,26 @@
+{
+  "id": 10,
+  "title": "Light Circuit Safety Check",
+  "description": "Given a directed graph of light wires, detect whether any cycle exists. Output \"Danger\" if there is a cycle; otherwise output \"Safe\".",
+  "method_signatures": {
+    "java": "public static String checkCircuit(int n, int[][] edges)",
+    "python": "def check_circuit(n: int, edges: list[list[int]]) -> str",
+    "cpp": "std::string checkCircuit(int n, const std::vector<std::vector<int>>& edges)"
+  },
+  "input_format": "Line 1: integer n (nodes). Line 2: integer m (edges). Next m lines: edge u v (0-indexed).",
+  "output_format": "\"Danger\" if a cycle exists, else \"Safe\".",
+  "constraints": "0 \u2264 n; 0 \u2264 m",
+  "sample_tests": [
+    {
+      "input": "4\n3\n0 1\n1 2\n2 3",
+      "output": "Safe",
+      "explanation": "No directed cycle."
+    }
+  ],
+  "tests": [
+    { "input": "3\n3\n0 1\n1 2\n2 0", "output": "Danger", "hidden": false },
+    { "input": "5\n0", "output": "Safe", "hidden": false },
+    { "input": "2\n2\n0 1\n1 0", "output": "Danger", "hidden": true },
+    { "input": "6\n5\n0 1\n1 2\n2 3\n3 4\n4 3", "output": "Danger", "hidden": true }
+  ]
+}

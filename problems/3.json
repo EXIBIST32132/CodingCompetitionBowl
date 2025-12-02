@@ -1,0 +1,26 @@
+{
+  "id": 3,
+  "title": "Gingerbread Cookie Checker",
+  "description": "A gingerbread cookie is \"good\" if its size is at least 5 and its baking temperature is between 180 and 200 inclusive. Count how many cookies are good.",
+  "method_signatures": {
+    "java": "public static int goodCookies(int[][] cookies)",
+    "python": "def good_cookies(cookies: list[list[int]]) -> int",
+    "cpp": "int goodCookies(const std::vector<std::vector<int>>& cookies)"
+  },
+  "input_format": "First line: integer n. Next n lines: size temperature.",
+  "output_format": "An integer: the count of good cookies.",
+  "constraints": "n \u2265 0",
+  "sample_tests": [
+    {
+      "input": "4\n5 200\n2 190\n6 170\n8 185",
+      "output": "2",
+      "explanation": "Only cookies 1 and 4 qualify."
+    }
+  ],
+  "tests": [
+    { "input": "3\n5 199\n7 180\n4 200", "output": "2", "hidden": false },
+    { "input": "5\n1 100\n5 180\n5 200\n10 201\n6 190", "output": "3", "hidden": false },
+    { "input": "0", "output": "0", "hidden": true },
+    { "input": "4\n5 180\n5 181\n5 199\n5 200", "output": "4", "hidden": true }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": 7,
+  "title": "Message Chunk Decoder",
+  "description": "Split a string into chunks of size k. Reverse even-numbered chunks (0, 2, 4, ...), leave odd-numbered chunks as-is, then join and output the result.",
+  "method_signatures": {
+    "java": "public static String decodeMessage(String s, int k)",
+    "python": "def decode_message(s: str, k: int) -> str",
+    "cpp": "std::string decodeMessage(const std::string& s, int k)"
+  },
+  "input_format": "Line 1: string s. Line 2: integer k.",
+  "output_format": "Decoded string.",
+  "constraints": "k \u2265 1",
+  "sample_tests": [
+    {
+      "input": "ABCDEFGH\n3",
+      "output": "CBADEFHG",
+      "explanation": "Chunks ABC, DEF, GH -> reverse ABC and GH."
+    }
+  ],
+  "tests": [
+    { "input": "HELLOWORLD\n2", "output": "EHLLWOORDL", "hidden": false },
+    { "input": "SNOWMAN\n3", "output": "ONSWMAN", "hidden": false },
+    { "input": "AAA\n1", "output": "AAA", "hidden": true },
+    { "input": "ABCDE\n4", "output": "DCBAE", "hidden": true }
+  ]
+}

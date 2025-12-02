@@ -1,0 +1,26 @@
+{
+  "id": 2,
+  "title": "Snowflake Mirror Score",
+  "description": "Given a snowflake pattern string of '*' and '.', compare character i with character (length \u2212 1 \u2212 i). Count how many pairs match.",
+  "method_signatures": {
+    "java": "public static int mirrorScore(String s)",
+    "python": "def mirror_score(s: str) -> int",
+    "cpp": "int mirrorScore(const std::string& s)"
+  },
+  "input_format": "A single string consisting of '*' and '.'.",
+  "output_format": "A single integer: the mirror score.",
+  "constraints": "Length \u2265 1",
+  "sample_tests": [
+    {
+      "input": "...*.",
+      "output": "3",
+      "explanation": "Positions 0&4 match (.), 1&3 match (.), 2&2 matches (*)."
+    }
+  ],
+  "tests": [
+    { "input": "..*..", "output": "5", "hidden": false },
+    { "input": "..*", "output": "3", "hidden": false },
+    { "input": "*****", "output": "5", "hidden": true },
+    { "input": "....", "output": "4", "hidden": true }
+  ]
+}

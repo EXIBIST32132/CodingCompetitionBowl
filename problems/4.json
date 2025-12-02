@@ -1,0 +1,26 @@
+{
+  "id": 4,
+  "title": "Elf Skill Sorting",
+  "description": "Each elf is given as Name:Score. Sort elves by highest score first, breaking ties alphabetically by name. Output one elf per line in the same Name:Score format.",
+  "method_signatures": {
+    "java": "public static List<String> sortElves(List<String> elves)",
+    "python": "def sort_elves(elves: list[str]) -> list[str]",
+    "cpp": "std::vector<std::string> sortElves(std::vector<std::string> elves)"
+  },
+  "input_format": "A single line: Name:Score, Name:Score, ... (commas may have spaces).",
+  "output_format": "Sorted elves, one per line.",
+  "constraints": "At least one elf; scores are integers.",
+  "sample_tests": [
+    {
+      "input": "Tina:30, Bob:50, Anna:50",
+      "output": "Anna:50\nBob:50\nTina:30",
+      "explanation": "Bob and Anna tie on score; Anna precedes Bob alphabetically."
+    }
+  ],
+  "tests": [
+    { "input": "Zed:10, Amy:100, Ben:50", "output": "Amy:100\nBen:50\nZed:10", "hidden": false },
+    { "input": "Cole:30, Coleen:30, Cody:29", "output": "Cole:30\nColeen:30\nCody:29", "hidden": false },
+    { "input": "M:1", "output": "M:1", "hidden": true },
+    { "input": "A:5, B:5, C:5, D:5", "output": "A:5\nB:5\nC:5\nD:5", "hidden": true }
+  ]
+}

@@ -1,0 +1,46 @@
+import os
+import resource
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+
+MEMORY_LIMIT = 256 * 1024 * 1024  # 256 MB
+
+
+def _limit_resources():
+    try:
+        resource.setrlimit(resource.RLIMIT_AS, (MEMORY_LIMIT, MEMORY_LIMIT))
+        resource.setrlimit(resource.RLIMIT_DATA, (MEMORY_LIMIT, MEMORY_LIMIT))
+    except (ValueError, resource.error):
+        # Resource limits may not be supported on all platforms.
+        pass
+
+
+def run(code: str, input_data: str, timeout: int = 5):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        path = Path(tmpdir) / "solution.py"
+        path.write_text(code)
+        try:
+            result = subprocess.run(
+                [sys.executable or "python3", path.name],
+                input=input_data.encode(),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=tmpdir,
+                timeout=timeout,
+                preexec_fn=_limit_resources,
+            )
+            return {
+                "success": result.returncode == 0,
+                "output": result.stdout.decode(),
+                "error": result.stderr.decode(),
+            }
+        except subprocess.TimeoutExpired:
+            return {
+                "success": False,
+                "output": "",
+                "error": "Execution timed out",
+                "timeout": True,
+            }

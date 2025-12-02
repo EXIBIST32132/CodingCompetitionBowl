@@ -1,0 +1,26 @@
+{
+  "id": 9,
+  "title": "Largest Safe Snow Patch",
+  "description": "Given an n\u00d7n grid of 'S' (safe) and 'I' (unsafe) cells, find the size of the largest connected safe region using 4-directional adjacency.",
+  "method_signatures": {
+    "java": "public static int largestRegion(char[][] grid)",
+    "python": "def largest_region(grid: list[str]) -> int",
+    "cpp": "int largestRegion(const std::vector<std::string>& grid)"
+  },
+  "input_format": "Line 1: integer n. Next n lines: grid rows containing 'S' or 'I'.",
+  "output_format": "Single integer: size of the largest safe region.",
+  "constraints": "1 \u2264 n",
+  "sample_tests": [
+    {
+      "input": "4\nSSIS\nSSII\nISIS\nSSSS",
+      "output": "6",
+      "explanation": "Largest connected safe component has 6 cells."
+    }
+  ],
+  "tests": [
+    { "input": "2\nSS\nSS", "output": "4", "hidden": false },
+    { "input": "3\nSIS\nIII\nSIS", "output": "1", "hidden": false },
+    { "input": "3\nIII\nIII\nIII", "output": "0", "hidden": true },
+    { "input": "5\nSSISS\nSISIS\nSSSSS\nIIISS\nSSSSS", "output": "19", "hidden": true }
+  ]
+}

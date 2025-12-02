@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "title": "Removed Names",
+  "description": "Santa keeps a draft naughty list and a final corrected list. Count how many names were removed: names that appear in the draft but not in the final list.",
+  "method_signatures": {
+    "java": "public static int removedNames(List<String> draft, List<String> fin)",
+    "python": "def removed_names(draft: list[str], fin: list[str]) -> int",
+    "cpp": "int removedNames(const std::vector<std::string>& draft, const std::vector<std::string>& fin)"
+  },
+  "input_format": "First line: integer n. Next n lines: names in the draft. Next line: integer m. Next m lines: names in the final list.",
+  "output_format": "An integer representing the number of removed names.",
+  "constraints": "n \u2265 0, m \u2265 0",
+  "sample_tests": [
+    {
+      "input": "4\nTim\nSarah\nMilo\nTina\n3\nSarah\nMilo\nTina",
+      "output": "1",
+      "explanation": "Only Tim was removed."
+    }
+  ],
+  "tests": [
+    { "input": "3\nAlex\nBrian\nCory\n2\nBrian\nAlex", "output": "1", "hidden": false },
+    { "input": "1\nSnowy\n0", "output": "1", "hidden": false },
+    { "input": "0\n0", "output": "0", "hidden": true },
+    { "input": "5\nA\nB\nC\nD\nE\n3\nA\nD\nE", "output": "2", "hidden": true }
+  ]
+}

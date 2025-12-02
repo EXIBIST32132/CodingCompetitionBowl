@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Dashboard - LAN Bowl</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+</head>
+<body class="page">
+<header class="topbar">
+    <div class="brand">
+        <span class="logo-dot"></span>
+        <span class="brand-title">Host Dashboard</span>
+    </div>
+    <div class="status" id="hostStatus">Locked</div>
+</header>
+
+    <main class="layout host-layout">
+    <section class="panel medium">
+        <h2>Leaderboard</h2>
+        {% if host_password_set %}
+        <p class="hint">Host password is required to unlock controls.</p>
+        {% else %}
+        <p class="hint">No host password configured. Set HOST_PASSWORD env var.</p>
+        {% endif %}
+        <table class="table" id="leaderboardTable">
+            <thead>
+            <tr><th>#</th><th>Name</th><th>Score</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <section class="panel large">
+        <div class="problem-header">
+            <h2>Submissions</h2>
+            <div id="loginControls">
+                <input type="password" id="hostPassword" placeholder="Host password">
+                <button id="loginBtn">Unlock</button>
+            </div>
+        </div>
+        <div class="host-controls">
+            <div class="timer-controls">
+                <div class="timer-row">
+                    <label>Timer (seconds)</label>
+                    <input type="number" id="timerInput" placeholder="e.g., 1800">
+                </div>
+                <div class="timer-buttons">
+                    <button id="timerStart">Start</button>
+                    <button id="timerPause">Pause</button>
+                    <button id="timerStop">Stop</button>
+                </div>
+                <div class="timer-display">Status: <span id="timerDisplay">stopped</span></div>
+            </div>
+            <div class="reset-controls">
+                <button id="resetBtn" class="danger-btn">Reset Scores & Submissions</button>
+            </div>
+        </div>
+        <div class="host-body">
+            <div class="submission-list">
+                <ul id="submissionList"></ul>
+            </div>
+            <div class="code-viewer" id="codeViewer">
+                <pre id="codeContent">// Select a submission to view code and status.</pre>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="/static/host.js"></script>
+</body>
+</html>
