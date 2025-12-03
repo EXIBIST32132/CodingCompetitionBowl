@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 2,
   "title": "Snowflake Mirror Score",
   "description": "Given a snowflake pattern string of '*' and '.', compare character i with character (length \u2212 1 \u2212 i). Count how many pairs match.",

@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 7,
   "title": "Message Chunk Decoder",
   "description": "Split a string into chunks of size k. Reverse even-numbered chunks (0, 2, 4, ...), leave odd-numbered chunks as-is, then join and output the result.",

@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 1,
   "title": "Removed Names",
   "description": "Santa keeps a draft naughty list and a final corrected list. Count how many names were removed: names that appear in the draft but not in the final list.",

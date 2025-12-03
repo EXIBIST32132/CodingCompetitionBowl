@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 6,
   "title": "Flight Safety Checker",
   "description": "Santa flies from start to end hours. Given unsafe intervals, determine if any part of the flight overlaps an unsafe time. If any overlap exists, output \"Unsafe\"; otherwise output \"Safe\".",

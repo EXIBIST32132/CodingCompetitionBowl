@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 4,
   "title": "Elf Skill Sorting",
   "description": "Each elf is given as Name:Score. Sort elves by highest score first, breaking ties alphabetically by name. Output one elf per line in the same Name:Score format.",

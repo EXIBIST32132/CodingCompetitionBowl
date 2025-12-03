@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 5,
   "title": "Icicle Melting Steps",
   "description": "Given icicle lengths, each hour subtract the current smallest length from all icicles and remove any that reach zero. Output how many icicles remain after each hour until none remain.",

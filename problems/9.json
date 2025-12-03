@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 9,
   "title": "Largest Safe Snow Patch",
   "description": "Given an n\u00d7n grid of 'S' (safe) and 'I' (unsafe) cells, find the size of the largest connected safe region using 4-directional adjacency.",

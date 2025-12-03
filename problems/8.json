@@ -1,4 +1,5 @@
 {
+  "license": "MIT License (c) 2025 Jonathan St-Georges",
   "id": 8,
   "title": "Sleigh Load Difference",
   "description": "Split toy weights into two groups so the difference between their sums is as small as possible. Output that smallest difference.",
