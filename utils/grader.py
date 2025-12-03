@@ -1,16 +1,23 @@
 import json
 import subprocess
+import sys
 import tempfile
 import textwrap
 from pathlib import Path
 from typing import Dict, List, Optional
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+# Ensure local judge modules are importable when this file is run directly.
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
 from judge import cpp_runner, java_runner, python_runner
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 PROBLEMS_DIR = BASE_DIR / "problems"
 DEFAULT_TIMEOUT = 5
+JAVA_IMPORT_LINE = "import java.util.*;"
+CPP_INCLUDE_LINE = "#include <bits/stdc++.h>"
 
 
 RUNNERS = {
@@ -21,6 +28,51 @@ RUNNERS = {
     "cpp": cpp_runner.run,
     "c": cpp_runner.run,
 }
+
+
+def ensure_java_imports(code: str) -> str:
+    if "import java.util" in code:
+        return code
+    lines = code.splitlines()
+    insert_at = 0
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("package ") or stripped.startswith("import "):
+            insert_at = idx + 1
+            continue
+        if stripped == "":
+            insert_at = idx + 1
+            continue
+        break
+    lines.insert(insert_at, JAVA_IMPORT_LINE)
+    return "\n".join(lines) + ("\n" if code.endswith("\n") else "")
+
+
+def ensure_cpp_includes(code: str) -> str:
+    if CPP_INCLUDE_LINE in code:
+        return code
+    prefix = f"{CPP_INCLUDE_LINE}\n"
+    if code.startswith("#include"):
+        return prefix + code
+    return f"{prefix}\n{code}"
+
+
+def ensure_python_imports(code: str) -> str:
+    if "List[" in code and "from typing import" not in code and "import typing" not in code:
+        return f"from typing import List\n\n{code}"
+    return code
+
+
+def apply_language_boilerplate(language: str, code: str) -> str:
+    lang_key = (language or "").strip().lower()
+    prepared = code or ""
+    if lang_key == "java":
+        return ensure_java_imports(prepared)
+    if lang_key in {"c++", "cpp", "c"}:
+        return ensure_cpp_includes(prepared)
+    if lang_key in {"python", "py"}:
+        return ensure_python_imports(prepared)
+    return prepared
 
 
 def list_problems() -> List[Dict]:
@@ -49,10 +101,11 @@ def load_problem(problem_id: int) -> Dict:
 
 def grade_submission(language: str, code: str, problem: Dict):
     lang_key = (language or "").strip().lower()
+    prepared_code = apply_language_boilerplate(lang_key, code or "")
     structured_cases = build_structured_cases(problem)
     if structured_cases and lang_key in {"java", "python"}:
         try:
-            return grade_structured(lang_key, code, problem, structured_cases)
+            return grade_structured(lang_key, prepared_code, problem, structured_cases)
         except Exception:
             # fall back to stdin-based grading if structured path fails
             pass
@@ -79,7 +132,7 @@ def grade_submission(language: str, code: str, problem: Dict):
             )
             continue
 
-        res = runner(code, test.get("input", ""), timeout=DEFAULT_TIMEOUT)
+        res = runner(prepared_code, test.get("input", ""), timeout=DEFAULT_TIMEOUT)
         output_clean = (res.get("output") or "").strip()
         expected_clean = (test.get("output") or "").strip()
         test_passed = res.get("success") and output_clean == expected_clean
